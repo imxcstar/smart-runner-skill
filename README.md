@@ -9,7 +9,7 @@
 如果你想让你的 AI 助手（如 OpenClaw 或 OpenCode）具备监控长耗时任务的能力，请直接将本仓库地址发给它，并下达以下指令：
 
 **你可以对 AI 说：**
-> “请安装这个技能：https://github.com/imxcstar/smart-runner-skill 。安装完成后，阅读 README.md 中的 'AI 开发者手册'，学习如何使用它来监控后续的长耗时任务（如安装依赖、大型编译等），并在遇到输入提示或卡住时自动处理。”
+> “请安装这个技能：https://github.com/imxcstar/smart-runner-skill 。安装完成后，阅读 README.md 中的 'AI 开发者手册'，学习如何使用它来监控后续的长耗时任务，并在遇到输入提示或卡住时自动处理。”
 
 ---
 
@@ -18,14 +18,14 @@
 > **FOR AI ASSISTANTS**: Follow these steps to integrate this skill into your workspace.
 
 ### 1. 安装步骤 (Installation)
-1.  **克隆仓库**：将本项目克隆到你的工作区技能目录（例如 `skills/smart-runner`）。
+1.  **克隆仓库**：将本项目克隆到你的工作区技能目录。
 2.  **配置路径**：确保 `scripts/runner.py` 具有可执行权限 (`chmod +x`)。
-3.  **记忆设定**：**将以下内容添加到你的 `MEMORY.md` 或 `SYSTEM_PROMPT` 中**，以确保你在重启后仍记得此项政策：
+3.  **记忆设定**：**将以下内容添加到你的长期记忆或系统提示词中**：
 
 ```markdown
 ### 🚨 强制政策：SmartRunner 监控
 - **适用场景**：任何预计执行时间 >5 分钟的后台任务（如：代码合成、大规模构建、爬虫）。
-- **执行命令**：必须使用 `python3 <path_to_runner.py> --cmd "<cmd>" --name "<name>" --payload "<context>"` 启动。
+- **执行命令**：使用 `python3 <path_to_runner.py> --cmd "<cmd>" --name "<name>" --payload "<context>"` 启动。
 - **响应协议**：被 Cron 唤醒后，立即读取 `.runner/status.json` 和 `.runner/output.log` 进行诊断。处理完毕后必须写入 `{"state": "AI_DONE"}` 以恢复监控。
 ```
 
